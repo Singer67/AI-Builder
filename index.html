@@ -3,24 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio · 精致</title>
+<title>Studio · 细腻</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 /* ------------------------------------------------
-   Design tokens
+   Design tokens — warm & comfortable
    ------------------------------------------------ */
 :root {
-  --bg: #ffffff;
-  --text: #1d1d1f;
-  --text-secondary: #86868b;
-  --text-tertiary: #aeaeb2;
-  --accent: #1d1d1f;
-  --border: #d2d2d7;
-  --border-light: #e8e8ed;
-  --max-w: 1120px;
-  --font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --bg: #faf8f5;
+  --surface: #ffffff;
+  --text: #2d2a27;
+  --text-secondary: #8c8580;
+  --text-tertiary: #b5aca5;
+  --accent: #c2410c;
+  --accent-bg: #fef5ef;
+  --border: #e6dfd7;
+  --shadow-card: 0 2px 12px rgba(45,42,39,.06);
+  --shadow-card-hover: 0 8px 32px rgba(45,42,39,.1);
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'DM Serif Display', georgia, serif;
+  --max-w: 1100px;
 }
 
 /* ------------------------------------------------
@@ -28,7 +32,7 @@
    ------------------------------------------------ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;font-weight:300}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;font-weight:400;font-size:1rem}
 a{color:inherit;text-decoration:none}
 ul{list-style:none}
 img{max-width:100%;display:block}
@@ -36,29 +40,32 @@ img{max-width:100%;display:block}
 /* ------------------------------------------------
    Container
    ------------------------------------------------ */
-.container{max-width:var(--max-w);margin:0 auto;padding:0 32px}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
 @media (max-width: 480px){.container{padding:0 20px}}
 
 /* ------------------------------------------------
    Nav
    ------------------------------------------------ */
-.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 0}
-.nav-brand{font-size:0.9rem;font-weight:500;letter-spacing:-0.01em}
-.nav-links{display:flex;gap:28px}
-.nav-links a{font-size:0.8rem;font-weight:400;color:var(--text-secondary);letter-spacing:0.02em;transition:color .3s}
-.nav-links a:hover{color:var(--text)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:32px 0}
+.nav-brand{font-family:var(--font-heading);font-size:1.15rem;font-style:italic;color:var(--text)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:0.85rem;font-weight:400;color:var(--text-secondary);transition:color .35s}
+.nav-links a:hover{color:var(--accent)}
 @media (max-width: 640px){.nav-links{display:none}}
 
 /* ------------------------------------------------
    Hero
    ------------------------------------------------ */
-.hero{min-height:85vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0}
-.hero-label{display:flex;align-items:center;gap:12px;font-size:0.7rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:28px}
-.hero-label::before{content:'';width:24px;height:1px;background:var(--text-tertiary)}
-.hero h1{font-size:clamp(2.6rem,5vw,4.2rem);font-weight:500;letter-spacing:-0.03em;line-height:1.08;text-wrap:balance;margin-bottom:24px;max-width:800px}
-.hero p{font-size:clamp(0.95rem,1.3vw,1.1rem);color:var(--text-secondary);max-width:480px;line-height:1.7;font-weight:300;margin-bottom:40px}
-.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:11px 30px;background:var(--accent);color:#fff;border-radius:40px;font-size:0.8rem;font-weight:400;letter-spacing:0.02em;transition:opacity .3s,transform .2s}
-.hero-cta:hover{opacity:.85}
+.hero{min-height:85vh;display:flex;flex-direction:column;justify-content:center;padding:100px 0;position:relative}
+.hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-bg::before{content:'';position:absolute;top:-40%;right:-20%;width:80vmax;height:80vmax;border-radius:50%;background:radial-gradient(circle,rgba(194,65,12,.06) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:1}
+.hero-label{font-size:0.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px}
+.hero h1{font-family:var(--font-heading);font-size:clamp(2.8rem,6vw,4.6rem);font-weight:400;line-height:1.08;text-wrap:balance;margin-bottom:24px;color:var(--text)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{font-size:clamp(.95rem,1.3vw,1.1rem);color:var(--text-secondary);max-width:480px;line-height:1.75;margin-bottom:40px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:13px 34px;background:var(--accent);color:#fff;border-radius:999px;font-size:.85rem;font-weight:500;letter-spacing:.01em;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.hero-cta:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 28px rgba(194,65,12,.25)}
 .hero-cta:active{transform:scale(.97)}
 
 /* ------------------------------------------------
@@ -66,48 +73,49 @@ img{max-width:100%;display:block}
    ------------------------------------------------ */
 .section{padding:clamp(80px,12vh,140px) 0}
 .section-header{margin-bottom:56px}
-.section-header h2{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:500;letter-spacing:-0.02em;line-height:1.2;text-wrap:balance;margin-bottom:10px}
-.section-header p{font-size:0.9rem;color:var(--text-secondary);font-weight:300;max-width:420px}
+.section-header h2{font-family:var(--font-heading);font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:400;line-height:1.25;text-wrap:balance;margin-bottom:8px}
+.section-header p{font-size:.9rem;color:var(--text-secondary);max-width:440px}
 
 /* ------------------------------------------------
-   Grid cards with divider lines
+   Approach cards — elevated on tinted bg
    ------------------------------------------------ */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-light)}
-@media (max-width: 768px){.grid-3{grid-template-columns:1fr;gap:1px}}
-.card{background:var(--bg);padding:52px 40px;transition:background .4s}
-.card:hover{background:#f8f8f8}
-.card-number{font-size:0.7rem;font-weight:400;letter-spacing:0.08em;color:var(--text-tertiary);margin-bottom:20px}
-.card h3{font-size:1.1rem;font-weight:500;letter-spacing:-0.01em;margin-bottom:10px}
-.card p{font-size:0.85rem;color:var(--text-secondary);line-height:1.7;font-weight:300}
-@media (max-width: 768px){.card{padding:36px 24px}}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width: 768px){.cards{grid-template-columns:1fr;gap:20px}}
+.card{background:var(--surface);border-radius:16px;padding:44px 36px;box-shadow:var(--shadow-card);transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card-hover)}
+.card-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.7rem;font-weight:600;margin-bottom:20px}
+.card h3{font-family:var(--font-heading);font-size:1.2rem;font-weight:400;margin-bottom:8px}
+.card p{font-size:.85rem;color:var(--text-secondary);line-height:1.75}
+@media (max-width: 768px){.card{padding:36px 28px}}
 
 /* ------------------------------------------------
-   Divider line
+   Divider
    ------------------------------------------------ */
-.divider{border:none;height:1px;background:var(--border-light);margin:0}
+.divider{width:48px;height:2px;background:var(--border);border:none;margin:0}
 
 /* ------------------------------------------------
-   Quote
+   Quote — warmer, more expressive
    ------------------------------------------------ */
 .quote-section{padding:clamp(60px,10vh,100px) 0}
-.quote-section blockquote{font-size:clamp(1.15rem,1.8vw,1.4rem);font-weight:300;max-width:600px;line-height:1.65;color:var(--text);border-left:2px solid var(--border);padding-left:32px}
-.quote-section cite{display:block;font-size:0.8rem;font-style:normal;color:var(--text-tertiary);margin-top:16px;padding-left:32px}
+.quote-section blockquote{font-family:var(--font-heading);font-size:clamp(1.3rem,2vw,1.6rem);font-weight:400;max-width:560px;line-height:1.55;color:var(--text);font-style:italic}
+.quote-section blockquote::before{content:'\201C';display:block;font-size:3.5rem;line-height:1;color:var(--accent);margin-bottom:-4px;opacity:.4}
+.quote-section cite{display:block;font-size:.8rem;font-style:normal;color:var(--text-tertiary);margin-top:12px}
 
 /* ------------------------------------------------
    Footer
    ------------------------------------------------ */
-.footer{border-top:1px solid var(--border-light);padding:32px 0}
+.footer{padding:48px 0}
 .footer-inner{display:flex;justify-content:space-between;align-items:center}
-.footer-inner p{font-size:0.75rem;color:var(--text-tertiary);font-weight:300}
-.footer-links{display:flex;gap:20px}
-.footer-links a{font-size:0.75rem;color:var(--text-secondary);font-weight:300;transition:color .3s}
-.footer-links a:hover{color:var(--text)}
+.footer-inner p{font-size:.75rem;color:var(--text-tertiary)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:.75rem;color:var(--text-secondary);transition:color .35s}
+.footer-links a:hover{color:var(--accent)}
 @media (max-width: 480px){.footer-inner{flex-direction:column;gap:12px;text-align:center}}
 
 /* ------------------------------------------------
    Scroll reveal
    ------------------------------------------------ */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.25,.1,.25,1),transform .8s cubic-bezier(.25,.1,.25,1)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.25,.1,.25,1),transform .8s cubic-bezier(.25,.1,.25,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.1s}
 .reveal-d2{transition-delay:.2s}
@@ -129,16 +137,19 @@ img{max-width:100%;display:block}
 
 <!-- Hero -->
 <section class="hero container">
-  <p class="hero-label reveal">Est. 2024</p>
-  <h1 class="reveal reveal-d1">设计是沉默的<br>对话</h1>
-  <p class="reveal reveal-d2">在克制与表达之间寻找精确的平衡点。每一行间距、每一段留白，都是经过推敲的选择。</p>
-  <a class="hero-cta reveal reveal-d3" href="#approach">
-    探索我们的方式
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-label reveal">Founded 2024</p>
+    <h1 class="reveal reveal-d1">设计是沉默的<em>对话</em></h1>
+    <p class="reveal reveal-d2">在克制与表达之间寻找精确的平衡点。每一行间距、每一段留白，都是经过推敲的选择。</p>
+    <a class="hero-cta reveal reveal-d3" href="#approach">
+      探索我们的方式
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
 </section>
 
-<hr class="divider">
+<hr class="divider container">
 
 <!-- Approach -->
 <section class="section" id="approach">
@@ -147,19 +158,19 @@ img{max-width:100%;display:block}
       <h2>我们如何工作</h2>
       <p>三个核心原则，贯穿每一个项目</p>
     </div>
-    <div class="grid-3">
+    <div class="cards">
       <div class="card reveal reveal-d1">
-        <p class="card-number">01</p>
+        <span class="card-number">01</span>
         <h3>化繁为简</h3>
         <p>去掉一切不必要的装饰，让每个元素都有其存在的理由。少不是空，而是精确。</p>
       </div>
       <div class="card reveal reveal-d2">
-        <p class="card-number">02</p>
+        <span class="card-number">02</span>
         <h3>细节之中</h3>
         <p>间距的毫厘之差、色彩的微妙变化、动势的轻柔过渡，品质藏在这些不易察觉的地方。</p>
       </div>
       <div class="card reveal reveal-d3">
-        <p class="card-number">03</p>
+        <span class="card-number">03</span>
         <h3>以人为本</h3>
         <p>每个设计最终服务于人的体验。清晰的导航、舒适的阅读、自然的交互，才是好的设计。</p>
       </div>
@@ -167,19 +178,19 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<hr class="divider">
+<hr class="divider container">
 
 <!-- Quote -->
 <section class="quote-section container reveal">
-  <blockquote>「好的设计，感觉就像本该如此。」</blockquote>
+  <blockquote>好的设计，感觉就像本该如此。</blockquote>
   <cite>- Dieter Rams</cite>
 </section>
 
-<hr class="divider">
+<hr class="divider container">
 
 <!-- Footer -->
-<footer class="footer" id="contact">
-  <div class="container footer-inner">
+<footer class="footer container" id="contact">
+  <div class="footer-inner">
     <p>&copy; 2024 Studio. All rights reserved.</p>
     <div class="footer-links">
       <a href="#">Instagram</a>
