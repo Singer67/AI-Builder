@@ -27,6 +27,49 @@
   --max-w: 1100px;
 }
 
+/* dark mode tokens */
+[data-theme="dark"] {
+  --bg: #1a1817;
+  --surface: #262321;
+  --text: #e8e2dc;
+  --text-secondary: #a09890;
+  --text-tertiary: #7a736e;
+  --accent: #d96d3a;
+  --accent-bg: #3a1e10;
+  --border: #3d3834;
+  --shadow-card: 0 2px 12px rgba(0,0,0,.35);
+  --shadow-card-hover: 0 8px 32px rgba(0,0,0,.5);
+}
+
+/* theme toggle */
+.theme-toggle {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s, color .3s, border-color .3s, transform .3s;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-card);
+}
+.theme-toggle:hover {
+  transform: scale(1.1);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.theme-toggle:active {
+  transform: scale(.95);
+}
+
 /* ------------------------------------------------
    Reset & base
    ------------------------------------------------ */
@@ -200,7 +243,39 @@ img{max-width:100%;display:block}
   </div>
 </footer>
 
+<!-- Theme toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="切换主题"></button>
+
 <script>
+// theme toggle
+(function() {
+  var btn = document.getElementById('theme-toggle');
+  var stored = localStorage.getItem('theme-preference');
+  var prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (prefersDark ? 'dark' : 'light');
+  if (theme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+
+  function setIcon() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.innerHTML = isDark
+      ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+      : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  setIcon();
+
+  btn.addEventListener('click', function() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme-preference', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme-preference', 'dark');
+    }
+    setIcon();
+  });
+})();
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
