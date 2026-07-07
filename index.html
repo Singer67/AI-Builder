@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio · 精致</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------
+   Design tokens
+   ------------------------------------------------ */
+:root {
+  --bg: #ffffff;
+  --text: #1d1d1f;
+  --text-secondary: #86868b;
+  --text-tertiary: #aeaeb2;
+  --accent: #1d1d1f;
+  --border: #d2d2d7;
+  --border-light: #e8e8ed;
+  --max-w: 1120px;
+  --font: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+/* ------------------------------------------------
+   Reset & base
+   ------------------------------------------------ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;font-weight:300}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{max-width:100%;display:block}
+
+/* ------------------------------------------------
+   Container
+   ------------------------------------------------ */
+.container{max-width:var(--max-w);margin:0 auto;padding:0 32px}
+@media (max-width: 480px){.container{padding:0 20px}}
+
+/* ------------------------------------------------
+   Nav
+   ------------------------------------------------ */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 0}
+.nav-brand{font-size:0.9rem;font-weight:500;letter-spacing:-0.01em}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:0.8rem;font-weight:400;color:var(--text-secondary);letter-spacing:0.02em;transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+@media (max-width: 640px){.nav-links{display:none}}
+
+/* ------------------------------------------------
+   Hero
+   ------------------------------------------------ */
+.hero{min-height:85vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0}
+.hero-label{display:flex;align-items:center;gap:12px;font-size:0.7rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:28px}
+.hero-label::before{content:'';width:24px;height:1px;background:var(--text-tertiary)}
+.hero h1{font-size:clamp(2.6rem,5vw,4.2rem);font-weight:500;letter-spacing:-0.03em;line-height:1.08;text-wrap:balance;margin-bottom:24px;max-width:800px}
+.hero p{font-size:clamp(0.95rem,1.3vw,1.1rem);color:var(--text-secondary);max-width:480px;line-height:1.7;font-weight:300;margin-bottom:40px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:11px 30px;background:var(--accent);color:#fff;border-radius:40px;font-size:0.8rem;font-weight:400;letter-spacing:0.02em;transition:opacity .3s,transform .2s}
+.hero-cta:hover{opacity:.85}
+.hero-cta:active{transform:scale(.97)}
+
+/* ------------------------------------------------
+   Section
+   ------------------------------------------------ */
+.section{padding:clamp(80px,12vh,140px) 0}
+.section-header{margin-bottom:56px}
+.section-header h2{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:500;letter-spacing:-0.02em;line-height:1.2;text-wrap:balance;margin-bottom:10px}
+.section-header p{font-size:0.9rem;color:var(--text-secondary);font-weight:300;max-width:420px}
+
+/* ------------------------------------------------
+   Grid cards with divider lines
+   ------------------------------------------------ */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-light)}
+@media (max-width: 768px){.grid-3{grid-template-columns:1fr;gap:1px}}
+.card{background:var(--bg);padding:52px 40px;transition:background .4s}
+.card:hover{background:#f8f8f8}
+.card-number{font-size:0.7rem;font-weight:400;letter-spacing:0.08em;color:var(--text-tertiary);margin-bottom:20px}
+.card h3{font-size:1.1rem;font-weight:500;letter-spacing:-0.01em;margin-bottom:10px}
+.card p{font-size:0.85rem;color:var(--text-secondary);line-height:1.7;font-weight:300}
+@media (max-width: 768px){.card{padding:36px 24px}}
+
+/* ------------------------------------------------
+   Divider line
+   ------------------------------------------------ */
+.divider{border:none;height:1px;background:var(--border-light);margin:0}
+
+/* ------------------------------------------------
+   Quote
+   ------------------------------------------------ */
+.quote-section{padding:clamp(60px,10vh,100px) 0}
+.quote-section blockquote{font-size:clamp(1.15rem,1.8vw,1.4rem);font-weight:300;max-width:600px;line-height:1.65;color:var(--text);border-left:2px solid var(--border);padding-left:32px}
+.quote-section cite{display:block;font-size:0.8rem;font-style:normal;color:var(--text-tertiary);margin-top:16px;padding-left:32px}
+
+/* ------------------------------------------------
+   Footer
+   ------------------------------------------------ */
+.footer{border-top:1px solid var(--border-light);padding:32px 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer-inner p{font-size:0.75rem;color:var(--text-tertiary);font-weight:300}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:0.75rem;color:var(--text-secondary);font-weight:300;transition:color .3s}
+.footer-links a:hover{color:var(--text)}
+@media (max-width: 480px){.footer-inner{flex-direction:column;gap:12px;text-align:center}}
+
+/* ------------------------------------------------
+   Scroll reveal
+   ------------------------------------------------ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.25,.1,.25,1),transform .8s cubic-bezier(.25,.1,.25,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="container nav">
+  <span class="nav-brand">Studio</span>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero container">
+  <p class="hero-label reveal">Est. 2024</p>
+  <h1 class="reveal reveal-d1">设计是沉默的<br>对话</h1>
+  <p class="reveal reveal-d2">在克制与表达之间寻找精确的平衡点。每一行间距、每一段留白，都是经过推敲的选择。</p>
+  <a class="hero-cta reveal reveal-d3" href="#approach">
+    探索我们的方式
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<hr class="divider">
+
+<!-- Approach -->
+<section class="section" id="approach">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>我们如何工作</h2>
+      <p>三个核心原则，贯穿每一个项目</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal reveal-d1">
+        <p class="card-number">01</p>
+        <h3>化繁为简</h3>
+        <p>去掉一切不必要的装饰，让每个元素都有其存在的理由。少不是空，而是精确。</p>
+      </div>
+      <div class="card reveal reveal-d2">
+        <p class="card-number">02</p>
+        <h3>细节之中</h3>
+        <p>间距的毫厘之差、色彩的微妙变化、动势的轻柔过渡，品质藏在这些不易察觉的地方。</p>
+      </div>
+      <div class="card reveal reveal-d3">
+        <p class="card-number">03</p>
+        <h3>以人为本</h3>
+        <p>每个设计最终服务于人的体验。清晰的导航、舒适的阅读、自然的交互，才是好的设计。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Quote -->
+<section class="quote-section container reveal">
+  <blockquote>「好的设计，感觉就像本该如此。」</blockquote>
+  <cite>- Dieter Rams</cite>
+</section>
+
+<hr class="divider">
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="container footer-inner">
+    <p>&copy; 2024 Studio. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Behance</a>
+      <a href="#">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
